@@ -7,7 +7,7 @@ import useHttp from "./hooks/use-http";
 function App() {
     const [tasks, setTasks] = useState([]);
 
-    const {isLoading, error, sendRequest: fetchTasks} = useHttp()
+    const {isLoading, error, sendRequest: getTasks} = useHttp()
 
 
     useEffect(() => {
@@ -20,8 +20,8 @@ function App() {
             setTasks(loadedTasks);
         }
 
-        fetchTasks({url: 'https://taks-46710-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'}, transformTasks);
-    }, [fetchTasks]);
+        getTasks({url: 'https://taks-46710-default-rtdb.europe-west1.firebasedatabase.app/tasks.json'}, transformTasks);
+    }, [getTasks]);
 
     const taskAddHandler = (task) => {
         setTasks((prevTasks) => prevTasks.concat(task));
@@ -34,7 +34,7 @@ function App() {
                 items={tasks}
                 loading={isLoading}
                 error={error}
-                onFetch={fetchTasks}
+                onFetch={getTasks}
             />
         </React.Fragment>
     );
