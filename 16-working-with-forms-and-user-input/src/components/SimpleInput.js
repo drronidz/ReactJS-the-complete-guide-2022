@@ -10,6 +10,13 @@ const SimpleInput = (props) => {
 
     const formSubmissionHandler = event => {
         event.preventDefault()
+
+        // Basic Validation
+        if (enteredName.trim() === '') {
+            console.log('Name field is empty ...')
+            return
+        }
+
         console.log('from useState : '+enteredName)
 
         const enteredValue = nameInputRef.current.value
