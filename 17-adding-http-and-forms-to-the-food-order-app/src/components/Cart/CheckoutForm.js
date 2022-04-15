@@ -27,7 +27,7 @@ const CheckoutForm = (props) => {
 
         const enteredNameIsValid = !isEmpty(enteredName)
         const enteredStreetIsValid = !isEmpty(enteredStreet)
-        const enteredPostalCodeIsValid = !isEmpty(enteredPostalCode) && isFiveChars(enteredCity)
+        const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode) && !isEmpty(enteredPostalCode)
         const enteredCityIsValid = !isEmpty(enteredCity)
 
         setFormInputsValidity({
@@ -49,7 +49,12 @@ const CheckoutForm = (props) => {
         }
 
         // Submit the cart DATA ...
-
+        props.onConfrim({
+            name: enteredName,
+            street: enteredStreet,
+            city: enteredCity,
+            postalCode: enteredPostalCode
+        })
 
     };
 
