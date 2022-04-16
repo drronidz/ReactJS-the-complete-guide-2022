@@ -5,11 +5,15 @@ import {useRef} from "react";
 
 const Counter = () => {
     const counter = useSelector(state => state.counter)
+    const show = useSelector(state => state.showCounter)
     const dispatch = useDispatch()
 
     const counterRef = useRef()
 
     const toggleCounterHandler = () => {
+        dispatch({
+            type: 'toggle'
+        })
     };
 
     const incrementHandler = () => {
@@ -34,7 +38,7 @@ const Counter = () => {
     return (
         <main className={classes.counter}>
             <h1>Redux Counter</h1>
-            <div className={classes.value}>{counter}</div>
+            {show && <div className={classes.value}>{counter}</div>}
             <div>
                 <button onClick={increaseHandler}>Increase By 5</button>
                 <button>Decrease By 5</button>
