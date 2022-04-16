@@ -3,11 +3,10 @@ import {useSelector, useDispatch} from 'react-redux'
 import classes from './Counter.module.css';
 import {useRef} from "react";
 import { counterActions } from "../store";
-import counterSlice from "../store/CounterSlice";
 // import {DECREMENT, INCREASE, INCREMENT, TOGGLE} from "../store";
 
 const Counter = () => {
-    const counter = useSelector((state) => state.counter.counter);
+    const counter = useSelector((state) => state.counter.value);
     const show = useSelector((state) => state.counter.showCounter);
     const dispatch = useDispatch()
 
