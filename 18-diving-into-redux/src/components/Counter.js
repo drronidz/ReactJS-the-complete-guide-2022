@@ -2,38 +2,40 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import classes from './Counter.module.css';
 import {useRef} from "react";
-import {DECREMENT, INCREASE, INCREMENT, TOGGLE} from "../store";
+import { counterActions } from "../store";
+import counterSlice from "../store/CounterSlice";
+// import {DECREMENT, INCREASE, INCREMENT, TOGGLE} from "../store";
 
 const Counter = () => {
-    const counter = useSelector(state => state.counter)
-    const show = useSelector(state => state.showCounter)
+    const counter = useSelector((state) => state.counter.counter);
+    const show = useSelector((state) => state.counter.showCounter);
     const dispatch = useDispatch()
 
-    const counterRef = useRef()
+    const increaseCounterRef = useRef()
+    const decreaseCounterRef = useRef()
 
     const toggleCounterHandler = () => {
-        dispatch({
-            type: TOGGLE
-        })
+        dispatch(counterActions.toggle())
     };
 
     const incrementHandler = () => {
-        dispatch({
-            type: INCREMENT
-        })
+        console.log(counter)
+        dispatch(counterActions.increment())
     }
 
     const decrementHandler = () => {
-        dispatch({
-            type: DECREMENT
-        })
+        console.log('DECREMENT')
+        dispatch(counterActions.decrement())
     }
 
-    const increaseHandler = (amount = 5) => {
-        dispatch({
-            type: INCREASE,
-            amount: +counterRef.current.value
-        })
+    const increaseHandler = () => {
+        const value = +increaseCounterRef.current.value
+        dispatch(counterActions.increaseBy(value))
+    }
+
+    const decreaseHandler = () => {
+        const value = +decreaseCounterRef.current.value
+        dispatch(counterActions.decreaseBy(value))
     }
 
     return (
@@ -44,8 +46,12 @@ const Counter = () => {
                 <button onClick={increaseHandler}>Increase By 5</button>
                 <button>Decrease By 5</button>
                 <div>
-                    <button onClick={increaseHandler}>Increase By ...</button>
-                    <input type="number" ref={counterRef}/>
+                    <button onClick={increaseHandler}>Increase By</button>
+                    <input type="number" ref={increaseCounterRef} defaultValue="1" min="1"/>
+                </div>
+                <div>
+                    <button onClick={decreaseHandler}>Decrease By</button>
+                    <input type="number" ref={decreaseCounterRef} defaultValue="1" min="1"/>
                 </div>
             </div>
             <div>
