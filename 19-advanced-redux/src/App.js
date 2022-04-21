@@ -24,7 +24,10 @@ function App() {
             isInitial = false
             return
         }
-        dispatch(sendCartDATA(cart))
+
+        if (cart.changed) {
+            dispatch(sendCartDATA(cart))
+        }
     }, [cart, dispatch]);
 
     return (

@@ -14,7 +14,10 @@ export const fetchCartDATA = () => {
 
         try {
             const cartDATA = await fetchDATA()
-            dispatch(cartActions.replaceCart(cartDATA))
+            dispatch(cartActions.replaceCart({
+                items: cartDATA.items || [],
+                totalQuantity: cartDATA.totalQuantity
+            }))
 
         } catch (error) {
             dispatch(
@@ -42,7 +45,10 @@ export const sendCartDATA = (cartDATA) => {
                 'https://taks-46710-default-rtdb.europe-west1.firebasedatabase.app/cart.json',
                 {
                     method: 'PUT',
-                    body: JSON.stringify(cartDATA),
+                    body: JSON.stringify({
+                        items: cartDATA.items,
+                        totalQuantity: cartDATA.totalQuantity
+                    }),
                 }
             );
 
