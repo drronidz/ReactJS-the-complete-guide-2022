@@ -9,14 +9,13 @@ const App = () => {
         <div>
             <MainHeader/>
             <main>
-
+                <Route path="/welcome">
+                    <Welcome/>
+                </Route>
+                <Route path="/products">
+                    <Products/>
+                </Route>
             </main>
-            <Route path="/welcome">
-                <Welcome/>
-            </Route>
-            <Route path="/products">
-                <Products/>
-            </Route>
         </div>
     );
 }
