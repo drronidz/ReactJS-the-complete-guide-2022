@@ -22,8 +22,8 @@ const QuoteList = (props) => {
             pathname: location.pathname,
             search: `?sort=${(isSortingASC ? 'desc' : 'asc')}`
         })
-        // Using location routing// history.push(`${location.pathname}?sort=${(isSortingASC ? 'desc' : 'asc')}`)
-        // Using match routing// history.push(`${match.path}?sort=${(isSortingASC ? 'desc' : 'asc')}`)
+        // Using location routing // history.push(`${location.pathname}?sort=${(isSortingASC ? 'desc' : 'asc')}`)
+        // Using match routing // history.push(`${match.path}?sort=${(isSortingASC ? 'desc' : 'asc')}`)
         // Using manual routing // history.push('/quotes?sort=' + (isSortingASC ? 'desc' : 'asc'))
     }
 
